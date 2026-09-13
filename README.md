@@ -93,21 +93,22 @@ Esta sección detalla el proceso paso a paso para ejecutar y evaluar el proyecto
 El servidor Flask y la base de datos están completamente contenedorizados, lo que elimina la necesidad de instalar Python o SQLite de forma local en la máquina evaluadora.
 
 * **Requisito previo:** Asegurarse de que el motor de **Docker Desktop** esté abierto y ejecutándose en segundo plano.
-* **Ejecución:** Abrir una terminal o línea de comandos, navegar hasta la carpeta raíz del proyecto (donde se encuentra el archivo `docker-compose.yml`) y ejecutar:
+* **Ejecución:** Abrir una terminal o línea de comandos, navegar a la subcarpeta del backend (`Docker-Flask/ORM/`) donde se encuentra el archivo `docker-compose.yml`, y ejecutar:
   ```bash
   docker compose up --build
   ```
 * **Verificación:** El proceso descargará las dependencias necesarias. Sabrá que el servidor está listo cuando la terminal muestre un mensaje similar a `Running on all addresses (0.0.0.0)` y `Running on http://127.0.0.1:5000`. En este primer arranque, el sistema generará el archivo `site.db` e inyectará automáticamente al usuario `admin_maestro`. Dejar esta terminal abierta.
 
 ### 2. Configuración de Enrutamiento (Frontend)
-Para que la aplicación móvil logre salir de su entorno virtual y alcance el servidor Docker de la computadora anfitriona, es necesario ajustar la dirección IP en el código fuente.
+Para que la aplicación móvil logre salir de su entorno virtual y alcance el servidor Docker de la computadora anfitriona, es necesario ajustar la dirección IP en el código fuente del cliente Android.
 
-* En Android Studio, abrir el panel de proyecto y navegar hacia el archivo `MainActivity.kt`.
-* Localizar la declaración del objeto `RetrofitClient` (cerca de la línea 60).
+* En Android Studio, abrir específicamente el proyecto ubicado en la subcarpeta `Android/FlaskLogin/`.
+* Utilizar el panel de proyecto para navegar por la ruta `app/src/main/java/ovh/gabrielhuav/flasklogin/` y abrir el archivo `MainActivity.kt`.
+* Localizar la declaración del objeto `RetrofitClient` (línea 69).
 * Confirmar o modificar la constante `BASE_URL` para que coincida exactamente con la IP de bucle invertido del emulador:
   ```kotlin
   object RetrofitClient {
-      private const val BASE_URL = "[http://10.0.2.2:5000/](http://10.0.2.2:5000/)" 
+    private const val BASE_URL = "[http://10.0.2.2:5000/](http://10.0.2.2:5000/)" 
   }
   ```
 
@@ -120,7 +121,7 @@ Para que la aplicación móvil logre salir de su entorno virtual y alcance el se
 * Con el emulador activo, presionar el botón general de **Run 'app'** (▶) en la barra de herramientas superior de Android Studio (o usar el atajo `Shift + F10`).
 * Android Studio iniciará la sincronización de Gradle y empaquetará el archivo APK.
 * Una vez que la aplicación se abra automáticamente en el emulador, realizar la prueba de integración directa introduciendo las credenciales por defecto:
-  * **Correo electrónico:** `admin_maestro`
+  * **Correo electrónico:** `Admin`
   * **Contraseña:** `admin123`
 * Si la configuración es correcta, el sistema mostrará una alerta con el rol "admin" y permitirá el acceso al panel CRUD, confirmando que la aplicación nativa y el contenedor Docker se están comunicando exitosamente.
 
