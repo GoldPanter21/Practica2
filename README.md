@@ -24,6 +24,9 @@
 
 ## Introducción
 Para realizar esta practica de base se usó el repositorio brindado por el maestro, una vez entendido un poco la forma de estructurar código, cómo se usa la interfaz y cómo se conectan los archivos se empezó el desarrollo de la interfáz.
+El repositorio inicial se encuentra en: https://github.com/gabrielhuav/Flask-Compose-Login-API
+Todos los archivos y cambios se documentan a continuación, no soy autor de todo lo que se encuentre en ese repositorio y tengo permiso expreso para usar ese repositorio cómo punto de partida tal cual cómo se indica en el documento adjunto a este repositorio: "AppMovilesPractica2.pdf".
+
 
 ### Archivos modificados:
 * `app/build.gradle.kts`: Se añadieron las dependencias `androidx.navigation:navigation-compose:2.7.7` para habilitar el enrutamiento entre pantallas y `androidx.compose.material:material-icons-extended` para implementar la visibilidad interactiva de la contraseña. Para la comunicación de red, se integraron `com.squareup.retrofit2:retrofit` y `converter-gson` para serialización JSON, junto con las librerías de corrutinas de Kotlin para el manejo asíncrono.
